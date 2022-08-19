@@ -41,6 +41,9 @@ public class Servlet extends HttpServlet {
             resp.getWriter().println("Numbers not entered!");
         }
 
+        req.setAttribute("a", num1);
+        req.setAttribute("symb", symbol);
+        req.setAttribute("b", num2);
         req.setAttribute("result", result);
         RequestDispatcher rd = req.getRequestDispatcher("Result.jsp");
         rd.forward(req, resp);
