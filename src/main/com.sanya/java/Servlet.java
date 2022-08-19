@@ -1,10 +1,10 @@
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/calc")
 public class Servlet extends HttpServlet {
@@ -21,22 +21,28 @@ public class Servlet extends HttpServlet {
             symbol = req.getParameter("symb").charAt(0);
 
             switch (symbol) {
-                case '+' : result = num1 + num2;
+                case '+':
+                    result = num1 + num2;
                     break;
-                case '-' : result = num1 - num2;
+                case '-':
+                    result = num1 - num2;
                     break;
-                case '*' : result = num1 * num2;
+                case '*':
+                    result = num1 * num2;
                     break;
-                case '/' : result = num1 / num2;
+                case '/':
+                    result = num1 / num2;
                     break;
-                default: break;
+                default:
+                    break;
             }
 
         } catch (NumberFormatException e) {
             resp.getWriter().println("Numbers not entered!");
         }
 
-        PrintWriter out = resp.getWriter();
-        out.println("Result is : " + result);
+        req.setAttribute("result", result);
+        RequestDispatcher rd = req.getRequestDispatcher("Result.jsp");
+        rd.forward(req, resp);
     }
 }
