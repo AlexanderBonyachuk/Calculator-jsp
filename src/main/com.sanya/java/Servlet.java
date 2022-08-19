@@ -8,16 +8,16 @@ import java.io.IOException;
 
 @WebServlet("/calc")
 public class Servlet extends HttpServlet {
-    int num1 = 0;
-    int num2 = 0;
-    int result = 0;
+    double num1 = 0;
+    double num2 = 0;
+    double result = 0;
     char symbol = '+';
 
     protected void service(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
-            num1 = Integer.parseInt(req.getParameter("num1"));
-            num2 = Integer.parseInt(req.getParameter("num2"));
+            num1 = Double.parseDouble(req.getParameter("num1"));
+            num2 = Double.parseDouble(req.getParameter("num2"));
             symbol = req.getParameter("symb").charAt(0);
 
             switch (symbol) {
